@@ -38,6 +38,7 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Separator } from "@/components/ui/separator";
 
+// Accept prop "leadnestBranding" to swap welcome banner copy.
 type Metric = {
   label: string;
   value: string;
@@ -68,62 +69,61 @@ type MockProject = {
 };
 
 const metrics: Metric[] = [
-  { label: "Total Users", value: "2,847", trend: "+12.4%", icon: Users, description: "vs last month" },
-  { label: "Active Projects", value: "184", trend: "+6.1%", icon: FolderKanban, description: "vs last month" },
-  { label: "Revenue", value: "$48,290", trend: "+18.2%", icon: DollarSign, description: "vs last month" },
-  { label: "Growth Rate", value: "24.5%", trend: "+3.1%", icon: TrendingUp, description: "vs last month" },
+  { label: "Total Contacts", value: "1,842", trend: "+9.3%", icon: Users, description: "in your CRM" },
+  { label: "Deals in Pipeline", value: "18", trend: "+2.1%", icon: FolderKanban, description: "open opportunities" },
+  { label: "Closed Deals (YTD)", value: "97", trend: "+14.2%", icon: DollarSign, description: "year to date" },
+  { label: "Avg. Win Rate", value: "32%", trend: "+4.8%", icon: TrendingUp, description: "this quarter" },
 ];
 
 const onboardingSteps: OnboardingStep[] = [
-  { title: "Complete your profile", description: "Add your name and contact details.", href: "/dashboard/settings", done: false },
-  { title: "Invite team members", description: "Collaborate by sending invitations.", href: "/dashboard/team", done: false },
-  { title: "Connect an integration", description: "Link external tools and services.", href: "#", done: false },
-  { title: "Create your first feature item", description: "Use the feature scaffold to add tenant data.", href: "/dashboard/feature", done: false },
+  { title: "Add your first contact", description: "Kick things off with a new lead or customer.", href: "/dashboard/contacts", done: false },
+  { title: "Create a new deal", description: "Start tracking an active opportunity.", href: "/dashboard/deals", done: false },
+  { title: "Invite your team", description: "Get others collaborating in LeadNest.", href: "/dashboard/team", done: false },
+  { title: "Explore dashboard analytics", description: "See pipeline health and activity in Overview.", href: "/dashboard/overview", done: false },
 ];
 
 const recentActivity: ActivityItem[] = [
-  { title: "New user signup", detail: "sarah@acme.dev created an account", time: "2 min ago", icon: Users },
-  { title: "Plan upgraded", detail: "starter@pulsehq.com moved to Pro", time: "28 min ago", icon: Zap },
-  { title: "Invoice paid", detail: "INV-2487 was paid — $299.00", time: "1 hr ago", icon: DollarSign },
-  { title: "Team invited", detail: "3 users invited to workspace", time: "3 hr ago", icon: Users },
-  { title: "Project created", detail: "New project 'Q2 Campaign'", time: "5 hr ago", icon: FolderKanban },
+  { title: "Contact added", detail: "Priya Sheth added to Contacts", time: "4 min ago", icon: Users },
+  { title: "Deal created", detail: "ACME Corp - Beta Trial (Stage: Discovery)", time: "31 min ago", icon: FolderKanban },
+  { title: "Win logged", detail: "Closed deal with Orange Labs", time: "2 hr ago", icon: DollarSign },
+  { title: "Note added", detail: "Jake commented on SkyNet pipeline", time: "3 hr ago", icon: Activity },
+  { title: "Team joined", detail: "Rahul Singh accepted invite", time: "Yesterday", icon: Users },
 ];
 
 const quickActions = [
-  { label: "Invite a member", href: "/dashboard/team", icon: Users },
-  { label: "Account settings", href: "/dashboard/settings", icon: Activity },
-  { label: "View activity", href: "#", icon: Bell },
+  { label: "Add Contact", href: "/dashboard/contacts", icon: Users },
+  { label: "Add Deal", href: "/dashboard/deals", icon: FolderKanban },
+  { label: "Overview", href: "/dashboard/overview", icon: TrendingUp },
 ];
 
 const weeklyData = [
-  { day: "Mon", users: 42, revenue: 320 },
-  { day: "Tue", users: 58, revenue: 480 },
-  { day: "Wed", users: 35, revenue: 290 },
-  { day: "Thu", users: 72, revenue: 610 },
-  { day: "Fri", users: 63, revenue: 520 },
-  { day: "Sat", users: 28, revenue: 180 },
-  { day: "Sun", users: 18, revenue: 140 },
+  { day: "Mon", users: 12, revenue: 500 },
+  { day: "Tue", users: 21, revenue: 890 },
+  { day: "Wed", users: 19, revenue: 670 },
+  { day: "Thu", users: 25, revenue: 1250 },
+  { day: "Fri", users: 21, revenue: 980 },
+  { day: "Sat", users: 7, revenue: 510 },
+  { day: "Sun", users: 8, revenue: 320 },
 ];
 
 const monthlyRevenue = [
-  { month: "Jan", value: 12400 },
-  { month: "Feb", value: 15800 },
-  { month: "Mar", value: 14200 },
-  { month: "Apr", value: 18600 },
-  { month: "May", value: 22100 },
-  { month: "Jun", value: 19800 },
-  { month: "Jul", value: 24500 },
-  { month: "Aug", value: 28300 },
-  { month: "Sep", value: 26100 },
-  { month: "Oct", value: 31200 },
-  { month: "Nov", value: 35800 },
-  { month: "Dec", value: 48290 },
+  { month: "Jan", value: 3200 },
+  { month: "Feb", value: 4100 },
+  { month: "Mar", value: 3900 },
+  { month: "Apr", value: 4680 },
+  { month: "May", value: 5840 },
+  { month: "Jun", value: 5300 },
+  { month: "Jul", value: 6710 },
+  { month: "Aug", value: 7450 },
+  { month: "Sep", value: 6590 },
+  { month: "Oct", value: 8100 },
+  { month: "Nov", value: 9660 },
+  { month: "Dec", value: 12290 },
 ];
 
 const initialMockProjects: MockProject[] = [
-  { id: "p-1", name: "Landing Refresh", owner: "Ava", status: "Draft" },
-  { id: "p-2", name: "Onboarding Flow", owner: "Liam", status: "In Review" },
-  { id: "p-3", name: "Usage Dashboard", owner: "Noah", status: "Published" },
+  { id: "p-1", name: "Lead Import", owner: "Chirag", status: "Draft" },
+  { id: "p-2", name: "Pipeline Automation", owner: "Nina", status: "In Review" },
 ];
 
 function BarChart({ data }: { data: typeof weeklyData }) {
@@ -201,7 +201,15 @@ function matchesQuery(query: string, ...fields: string[]): boolean {
   return fields.some((f) => f.toLowerCase().includes(q));
 }
 
-export function DashboardContent({ greeting, firstName }: { greeting: string; firstName: string }) {
+export function DashboardContent({
+  greeting,
+  firstName,
+  leadnestBranding,
+}: {
+  greeting: string;
+  firstName: string;
+  leadnestBranding?: boolean;
+}) {
   const [query, setQuery] = useState("");
   const [projects, setProjects] = useState<MockProject[]>(initialMockProjects);
   const [dialogOpen, setDialogOpen] = useState(false);
@@ -271,10 +279,14 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
         <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
           <div>
             <h1 className="text-2xl font-semibold tracking-tight">
-              {greeting}, {firstName}
+              {leadnestBranding
+                ? "Welcome to LeadNest"
+                : `${greeting}, ${firstName}`}
             </h1>
             <p className="mt-1 text-sm text-muted-foreground">
-              Here&apos;s what&apos;s happening across your workspace today.
+              {leadnestBranding
+                ? "Your CRM home for leads, contacts, and deals."
+                : "Here's what's happening across your workspace today."}
             </p>
           </div>
           <div className="flex items-center gap-2">
@@ -365,7 +377,11 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
                     0 / {onboardingSteps.length}
                   </Badge>
                 </div>
-                <CardDescription>Complete these steps to set up your workspace.</CardDescription>
+                <CardDescription>
+                  {leadnestBranding
+                    ? "Complete these steps to set up LeadNest for your team."
+                    : "Complete these steps to set up your workspace."}
+                </CardDescription>
               </CardHeader>
               <CardContent className="space-y-1">
                 {filteredSteps.map((step) => (
@@ -395,11 +411,11 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
               <CardHeader>
                 <div className="flex items-center justify-between">
                   <div>
-                    <CardTitle className="text-base">Weekly Signups</CardTitle>
-                    <CardDescription>New user registrations this week</CardDescription>
+                    <CardTitle className="text-base">Weekly New Leads</CardTitle>
+                    <CardDescription>New contacts added this week</CardDescription>
                   </div>
                   <Badge variant="outline" className="text-xs font-medium">
-                    316 total
+                    83 total
                   </Badge>
                 </div>
               </CardHeader>
@@ -422,8 +438,8 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
                   <CardDescription>Monthly revenue for the current year</CardDescription>
                 </div>
                 <div className="text-right">
-                  <p className="text-lg font-bold tracking-tight">$48,290</p>
-                  <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">+18.2% from last month</p>
+                  <p className="text-lg font-bold tracking-tight">₹12,290</p>
+                  <p className="text-xs text-emerald-600 dark:text-emerald-400 font-medium">+8.0% from last month</p>
                 </div>
               </div>
             </CardHeader>
@@ -494,7 +510,7 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
                     id="project-name"
                     name="name"
                     defaultValue={editingProject?.name ?? ""}
-                    placeholder="Q2 Campaign"
+                    placeholder="Q2 Launch Event"
                     required
                   />
                 </div>
@@ -504,7 +520,7 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
                     id="project-owner"
                     name="owner"
                     defaultValue={editingProject?.owner ?? ""}
-                    placeholder="Ava"
+                    placeholder="Chirag"
                     required
                   />
                 </div>
@@ -540,7 +556,7 @@ export function DashboardContent({ greeting, firstName }: { greeting: string; fi
             <div className="flex items-center justify-between">
               <div>
                 <CardTitle className="text-base">Recent Activity</CardTitle>
-                <CardDescription>Latest events across your workspace</CardDescription>
+                <CardDescription>Latest events across your LeadNest workspace</CardDescription>
               </div>
               <Button variant="ghost" size="sm" className="gap-1.5 text-xs" disabled>
                 View all
